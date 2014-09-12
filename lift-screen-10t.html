@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript">
+ 		function back()
+		{
+			window.history.back()
+		}
+  	</script>
+    <script>
+		$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(2000);
+  		});
+	</script>    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="view_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    <a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; font-family: 'Open Sans'; font-size:25px; ">
+லிஃப்டைப்  பற்றி
+   </div>
+	<div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList">    
+    		<li style="text-align:
+            justify;">இந்தியாவிலேயே முதல் முறையாக, சட்டம்சார்ந்த பயன்பாடாக லிஃப்ட் விளங்குகிறது என எண்ணுகிறோம். லிஃப்ட் முழுவதும்  ஒரு இலவச சேவை. லிஃப்ட் மத்திய மற்றும் மாநில (தற்பொழுது தமிழ்நாடு மட்டும்) சட்டங்கள் மற்றும் உச்சநீதிமன்ற மற்றும் உயர்நீதிமன்ற (தற்பொழுது சென்னை மட்டும்) தீர்ப்புக்களின்  சுருக்க தொகுப்பைபும், சட்டத்துறை சார்ந்தோரின் எண்ணங்களையும் கருத்துக்களையும் மாதா, மாதம் வழங்குகிறது. பயணீட்டாளர்கள் எளிதாக அறியும் வகையிலும், அவர்கள் மனதில் ஆழ்ந்து பதியும் வகையிலும் தீர்ப்புக்கள் எளிய வழியில் வழங்கப்படுகிறது.  புதிய சட்டங்களின் அனைத்து அம்சங்களும் முறையாக வழங்கப்படுகிறது.  லிஃப்ட் முழுக்க சுமார் 20 வருடம் அனுபவம் வாய்ந்த வழக்கறிஞர்களை கொண்டு வழங்கப்படுவதால், தரம் வாய்ந்ததாகவும் பயணீட்டாளர்கள் எதிர்பார்ப்யை நிறைவேற்றும் வகையில்  இருக்கும் என எண்ணுகிறோம்.</li>
+            
+             <li style="text-align:center;">LIFT reserves all copyrights of the content,  unique formats and all the artistic works.  Any unauthorized reproduction/copying  is  strictly prohibited.  LIFT , Lawinfingertips, the logo are all the trademarks of M/s. LIFT India and nobody is entitled to copy or infringe upon the same.</li>
+		</ul>
+	</div>
+	</div>
+    <div class="clear" style="margin-top:25px;"></div>
+    
+	</div>
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

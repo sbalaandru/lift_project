@@ -1,0 +1,155 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"> 
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	<script>
+		var bid,state;
+		var booktitle;
+		var text_null;
+		var lang =  window.localStorage.getItem("key");
+		
+			$("#get_legislation").live('pageinit', function(event, ui) 
+			{
+				$(document).ready(function()
+				{
+					function getUrlVars()
+					{
+						var  vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+						{
+							vars[key]=value;
+						});
+						return vars;
+					}
+	 				bid = getUrlVars()["id"];
+					state = getUrlVars()["state"];
+					var Book_Title = new Array();
+					var name = new Array();
+					var act_no = new Array();
+					var enacted_by= new Array();
+					var received_assent_of_the_president_on = new Array();
+					var published_in = new Array();
+					var came_in_force = new Array();
+					var salient_features = new Array();
+					var brief_details = new Array();
+					var ref_side = new Array();
+			 	    $.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final/get_legislation.php?book_id="+bid+"&type=state&state_id=1000",function(data)
+					{
+						var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+    					var jsonData = JSON.parse(obj);
+    					for (var i in jsonData.get_legislation)
+    					{
+							var books = jsonData.get_legislation[i];
+							Book_id =jsonData.get_legislation[i];
+							Book_Title[i]=books.book_name;
+							name[i]=books.name;
+							act_no[i]=books.act_no;
+							enacted_by[i]=books.enacted_by;
+							received_assent_of_the_president_on[i]=books.receiver_by_president_on;
+							published_in[i]=books.published_in;
+							came_in_force[i]=books.came_in_force;
+							salient_features[i]=books.salient_features;
+							brief_details[i]=books.brief_deatils;
+							ref_side[i]=books.ref_url;
+							var books_name = books.book_name;
+							var book_name = books.name;
+							var book_actno = books.act_no;
+							var book_enactedby = books.enacted_by;
+							var book_receiverbypresidenton = books.receiver_by_president_on;
+							var book_publishedin = books.published_in;
+							
+							var book_cameinforce = books.came_in_force;
+							var book_salientfeatures = books.salient_features;
+							var book_briefdeatils = books.brief_deatils;
+							var book_refurl = books.ref_url;
+							if(books_name == undefined && book_name == undefined && book_actno == undefined && book_enactedby == undefined && book_receiverbypresidenton == undefined && book_publishedin == undefined && book_cameinforce == undefined && book_salientfeatures == undefined && book_briefdeatils == undefined && book_refurl == undefined)
+							{
+								books_name = "Content not uploaded";
+								book_name = "Content not uploaded";
+								book_actno = "Content not uploaded";
+								book_enactedby ="Content not uploaded";
+								book_receiverbypresidenton = "Content not uploaded"
+								book_publishedin = "Content not uploaded";
+								book_cameinforce = "Content not uploaded";
+								book_salientfeatures = "Content not uploaded";
+								book_briefdeatils = "Content not uploaded";
+								book_refurl = "Content not uploaded";
+								
+								
+							}
+							
+							
+							
+							
+							var listValue=	"<li><div class='login-list-view'>" +
+											"<div><span style='font-size:18px; color: #96011a;'>Name :</span><br> "+book_name+"</div>" + "<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Act No :</span><br> "+book_actno+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Enacted by :</span><br> "+books.enacted_by+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Received Assent of the Governor  on :</span><br> "+book_receiverbypresidenton+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Published in :</span><br> "+book_publishedin+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Came in Force : </span><br>"+book_cameinforce+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Salient Features :</span><br>"+book_salientfeatures+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Brief Details :</span><br>"+book_briefdeatils+"</div>" +"<br>"+
+											"<div><span style='font-size:18px ; color: #96011a; width:100%;'>Full Text of the Act at :</span> <br><div style='font-size:14px; width:95px; '><a href='"+book_refurl+"'>"+book_refurl+"</a></div>" +"<br>"+
+						    				"</div></li>";
+											$("#BookList").append(listValue);
+											$('#BookList').listview('refresh');                  
+	    				} 
+											var listvalue1="<label>"+"<div>"+books_name+"</div>"+"</label>";
+											$("#labeldiv").append(listvalue1);
+				    });
+				})
+			});
+		
+		function back()
+		{
+			window.history.back()
+		}
+	</script> 
+	<script>
+		$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(1000);
+
+		});
+
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div id="dvLoading"></div>
+	<div data-role="page"  id="get_legislation"  >
+	<div data-role="header" data-position="fixed" class="page-header">
+    <div class="logo">
+    <a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+   	<div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; ">
+  		 <label id="labeldiv" style="color:#333;"></label>
+    </div>
+    <div class="login-list-view" style="margin-top:10px;" id="login-list">
+			<ul data-role="listview"  id="BookList"></ul>
+	</div>
+ 	</div>
+    <div class="clear" style="margin-top:25px;"></div>
+ 
+	</div>
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

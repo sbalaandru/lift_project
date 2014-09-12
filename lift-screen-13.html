@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <!-- scripts -->
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+ 	<script type="text/javascript">
+		function back()
+		{
+			window.history.back()
+		}
+  	</script> 
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="view_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+    <div class="logo">
+    <a onclick="back();"><div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; font-family: 'Open Sans'; font-size:25px;  ">
+   		 Contact Us
+    </div>
+    <div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList">    
+    		<li>M/s. Lift India,<br>
+
+
+
+
+C/o. M/s. Sai, Bharath & Ilan,<br>
+
+United India Annexe Building,<br>
+
+No. 8, Esplanade Road,<br>
+
+Chennai – 600 108.<br>
+
+044-25351283<br>
+
+044-25341546<br>
+<br>
+
+E-mail :
+
+
+
+lawinfingertips@gmail.com</li>
+		</ul>
+	</div>
+    </div>
+<div class="clear" style="margin-top:25px;"></div>
+    
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

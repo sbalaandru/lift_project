@@ -1,0 +1,117 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- scripts -->
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script>
+		var sentmail="lift-screen-1.html";
+		var Book_id = new Array();
+		var Book_Title = new Array();
+		var Book_Image = new Array();
+		var date = new Array();
+		var temp_url;
+		var a ;
+		var textBox="";
+		$("#get_all_book").live('pageinit', function(event, ui) 
+		{
+			dropdownonload();
+		})
+		function dropdownonload()
+		{
+			$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/get_year.php?id=1",function(data)
+			{
+				var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+				var jsonData = JSON.parse(obj);
+				for (var i in jsonData.get_year) 
+    			{
+					var book = jsonData.get_year[i];
+					var listValue = '<option value="'+book.year+'">'+book.year+'</option>';	
+					$("#Category").append(listValue);
+				}
+			});
+		
+		}
+		
+		function back()
+		{
+			window.history.back()
+		}
+		
+		function Changeyear()
+		{
+			$("#BookList").html("");
+			var dhanu = $('#Category').val();
+	        $.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/get_all_books.php?year="+dhanu,function(data){
+			var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+    		var jsonData = JSON.parse(obj);
+    		for (var i in jsonData.get_all_book)
+    		{
+        		var books = jsonData.get_all_book[i];
+				Book_id =jsonData.get_all_book[i];
+				Book_Title[i]=books.Book_Name;
+				temp_url=books.Url;
+				temp_url=temp_url.replace("\/","/");
+				Book_Image[i]=temp_url;
+				Book_id[i]=books.Id;
+        		date[i]=books.Published_Month;
+				var pr = "life-screen-sam.html?id="+books.Id;
+				var listValue=	"<div class='login-list-v0.iew'><a href='"+pr+"' rel='external'>" +
+								"<div style='width: 33%; margin-top: 5px; margin-bottom: 6px; float:left;'>"+
+    							"<div class='grid-box' style='text-align:center; font-family:Open Sans; font-size:15px; color:#666;'>"+"<img src='"+Book_Image[i]+"' width='69' height='77'  >"+"</div>"+
+					   	        "<div style='width:80px;  color:#FFF; font-size:14px; padding:2px 0px 2px 0px;  margin: auto;'>"+books.Published_Month+"</div>"+
+						    	"</a></div>";
+				$("#BookList").append(listValue);
+				$('#BookList').listview('refresh');                  
+			}
+		});
+		}
+	</script> 
+    
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="get_all_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+    <div class="logo">
+    <a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6T.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div style="width:100%;">
+    <div style="width: 31%; margin-top: 20px; margin-bottom: 6px; float:left;">
+    <div class="grid-box" style="text-align:center; font-family:Open Sans; font-size:22px; color:#666;">
+   	       ஆண்டு
+	</div> 
+    </div>
+    <div style="width: 60%; margin-top: 3px; float:left; margin-left: 6px;"  id="get_all_book">
+	<div data-role="fieldcontain" class="grid-box" style="text-align:center; font-family:Open Sans; font-size:15px; color:#666;">
+    	<select name="Category" id="Category" onchange="Changeyear();" class="a.ui-link-inherit">
+     		 <option value="">தேர்ந்தெடு</option>
+        </select></div></div>
+    </div>    
+    <div  style="clear:both;" ></div>
+ 	<div class="ui-grid-a" style="margin-top:0px;  background-image: url(images/bg-bg.jpg); min-height:339px;" id="login-list">
+    <ul data-role="listview"  id="BookList">
+    </ul>
+    </div>
+<div class="clear" style="margin-top:25px;"></div>
+   
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

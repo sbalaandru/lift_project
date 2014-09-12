@@ -1,0 +1,236 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+   <!-- <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>-->
+      <script src="js/jquery1.min.js"></script>
+  	<!--<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>-->
+    
+    <!---top slider--------------->
+   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="slider_css/demo.css"></script>-->
+    <script type="text/javascript" src="slider_css/jquery.mmenu.css"></script>
+    <script type="text/javascript" src="slider_js/jquery.mmenu.min.js"></script>
+    <script type="text/javascript">
+	var month,bid,bookname;
+	<!------top slider--------------->
+	
+			$(function() {
+				$('nav#menu').mmenu();
+			});
+	
+	<!------------------>
+	callmethod();
+  		  /*function getUrlVars()
+		  {
+				var  vars = {};
+				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+				{
+					vars[key]=value;
+				});
+				return vars;
+		  }
+		  bid = getUrlVars()["id"];*/
+		  
+		  
+		  /*	$("#month_of_book").live('pageinit', function(event, ui) 
+		    {
+			alert("hi");
+			$(document).ready(function()
+			{
+				
+				
+				Book_id = new Array();
+				var Book_Title = new Array();
+				var Book_Image = new Array();
+				var date = new Array();
+				var book_month = new Array();
+				var temp_url;
+				$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final/lift_of_the_month.php?id=1",function(data)
+				{
+					var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+					var jsonData = JSON.parse(obj);
+    				for (var i in jsonData.month_of_book)
+    				{
+						var books = jsonData.month_of_book[i];
+						Book_id =jsonData.month_of_book[i];
+						Book_Title[i]=books.Book_Name;
+						temp_url=books.Url;
+						temp_url=temp_url.replace("\/","/");
+						Book_Image[i]=temp_url;
+						book_month[i]=books.month;
+						date[i]=books.Published_Month;
+						Book_id[i]=books.Id;
+						} 
+				var dhanu = books.Id;
+				
+				alert(dhanu);
+    		  });
+		   })
+	   });*/
+	       function callmethod()
+		   {    
+			    Book_id = new Array();
+				var Book_Title = new Array();
+				var Book_Image = new Array();
+				var date = new Array();
+				var book_month = new Array();
+				var temp_url;
+				$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/lift_of_the_month.php?id=1",function(data)
+				{
+					var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+					var jsonData = JSON.parse(obj);
+    				for (var i in jsonData.month_of_book)
+    				{
+						var books = jsonData.month_of_book[i];
+						Book_id =jsonData.month_of_book[i];
+						Book_Title[i]=books.Book_Name;
+						temp_url=books.Url;
+						temp_url=temp_url.replace("\/","/");
+						Book_Image[i]=temp_url;
+						book_month[i]=books.month;
+						date[i]=books.Published_Month;
+						Book_id[i]=books.Id;
+						
+						 month = books.month;
+						 bid = books.Id;
+						 bookname = books.Book_Name;
+						 
+						
+						document.getElementById('month').innerHTML=bookname;
+						
+						} 
+				
+				});
+		   }
+		  function one()
+ 		  {
+			  
+			 
+			  window.location.href="legislationcentralT.html?id="+bid;
+ 		  }
+  		  function two()
+ 		  {
+		 	  window.location.href="legislationstatebookT.html?id="+bid;
+ 		  }
+		  function three()
+ 		  {
+		 	  window.location.href="caselawsupremeT.html?id="+bid;
+ 		  }
+		   function four()
+ 		  {
+		 	  window.location.href="caselawbookT.html?id="+bid;
+ 		  }
+		   function five()
+ 		  {
+		 	  window.location.href="thoughtbookT.html?id="+bid;
+ 		  }
+		  
+		  function back()
+		  {
+			  window.history.back()
+		  }
+  	</script>
+	<script>
+		/*$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(2000);
+		});*/
+	
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+
+ 	<!--<div id="dvLoading"></div>-->
+	<div data-role="page" id="month_of_book" >
+    <!-------HEader starting----------------->
+    
+    
+    <div id="page">
+			<div class="header">
+				<a href="#menu">
+                <img src="images/logo-head.png" class="head-img">
+                </a>
+                 
+				<span class="header-title head-txt">Law in Finger Tips</span>
+                
+                <span class="language-change"><a id="language-change1" href="index.html"> English</a></span>
+               
+			</div>
+			
+			</div>
+			<nav id="menu" class="sub-txt">
+            
+            
+            <ul>
+					
+					<li class="lift-space"><a class="lift-menu" href="#about"><div class="img-mnu"><img src="images/logo-head-2.png"></div><div class="txt-mnu">லிஃப்ட்</div></a>
+						<ul>
+							<li class="lift-space"><a class="sub-menu" href="lift-screen-10t.html">லிஃப்டைப்  பற்றி</a></li>
+							<li class="lift-space"><a class="sub-menu" href="lift-screen-11t.html">பயன்பாடு அறிவோம்</a>
+                            <li class="lift-space"><a class="sub-menu" href="lift-screen-12t.html">சாற்றும் துறப்பும்</a>
+                            <li class="lift-space"><a class="sub-menu" href="lift-screen-13t.html">தொடர்புகொள்ள</a></li>
+							
+						</ul>
+					</li>
+                    <li class="lift-space"><a class="lib-menu" href="lift-screen-4T.html"><div class="img-mnu"><img src="images/library.png"></div><div class="txt-mnu">லிஃப்ட் நூலகம்</div></a></li>
+					<li><a class="search-menu" href="#contact"><div class="img-mnu"><img src="images/search.png"></div><div class="txt-mnu">தேடல்</div></a></li>
+				</ul>
+
+			</nav>
+		</div>
+        
+    <!--------Header End---------------->
+    
+    <div class="head-title"><span class="head-title1">லிஃப்ட் - </span><span class="head-title2" id="month"></span>
+    </div>
+	
+  	<div data-role="content" >
+    <div class="clear"></div>
+    <a data-role="button" data-theme="b" onclick="one();"> 
+    <div class="social1 color-1" style="margin:10px 10px 0px; background:#f99c35;">
+    <div>
+    </div>
+    <div>
+  
+    <!--<img class="legi-img" src="images/logo-head-2.png">-->
+    
+    <span class="social1 txt-central-T" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">மத்திய  சட்டம்</span></div>
+    </div>
+    </a>
+    <a data-role="button" data-theme="b" onclick="two();"> 
+    <div class="social1" style="margin:25px 10px 0px; background:#f99c35;"><!--<img class="tam-legi" src="images/logo-head-2.png">--><span class="social1 txt-central-T" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">தமிழ்நாடு மாநில சட்டம் </span>
+    </div>
+    </a>
+    <a data-role="button" data-theme="b" onclick="three();"> 
+    <div class="social1" style="margin:25px 10px 0px; background:#497e13;"><!--<img class="supreme-law" src="images/logo-head-2.png">--><span class="social1 txt-central-T" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">உச்ச நீதிமன்ற தீர்ப்புகள்</span>
+    </div>
+    </a>
+    <a data-role="button" data-theme="b" onclick="four();"> 
+    <div class="social1" style="margin:25px 10px 0px; background:#497e13;"><!--<img class="madras-but" src="images/logo-head-2.png">--><span class="social1 txt-central-T" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">சென்னை உயர் நீதிமன்ற தீர்ப்புகள்</span>
+    </div> 
+    </a>
+	<a data-role="button" data-theme="a" onclick="five();">
+    <div class="social1" style="margin:25px 10px 0px; background:#0f76b8;"><!--<img class="forum-txt" src="images/logo-head-2.png">--><span class="social1 txt-central-T" style="margin-top:10px; font-family:Open Sans;  color:#FFF;">கருத்து மேடை</span>
+    </div>
+    </a>
+    <div class="clear" style="margin-top:25px;"></div>
+	</div><!-- /page -->
+	</div>
+	<!-- SCRIPTS -->
+	<!-- add to homepage bubble on iphone, ipad  -->
+	<script type="text/javascript">
+	if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+	{
+		document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+		document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+	}
+	</script>
+	<!-- /add to homepage bubble on iphone, ipad  --> 
+
+</body>
+</html>

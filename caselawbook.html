@@ -1,0 +1,131 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script>
+ 		var bid,court;
+		var booktitle;
+		var text_null;
+		var lang =  window.localStorage.getItem("key");
+		
+			$("#get_case_law").live('pageinit', function(event, ui) 
+			{
+				$(document).ready(function()
+				{
+					function getUrlVars()
+					{
+						var  vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+						{
+							vars[key]=value;
+						});
+						return vars;
+					}
+					bid = getUrlVars()["id"];
+	 				court = getUrlVars()["court"];
+					var Book_Name = new Array();
+					var Title = new Array();
+					var context = new Array();
+					var question= new Array();
+					var answer = new Array();
+					var ref = new Array();
+				    $.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final/get_case_law.php?book_id="+bid+"&type=hc&court_id=115",function(data)
+					{       
+						var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+						var jsonData = JSON.parse(obj);
+						for (var i in jsonData.get_case_law)
+					    {
+							var books = jsonData.get_case_law[i];
+							Book_id =jsonData.get_case_law[i];
+					        Book_Name[i]=books.book_name;
+							Title[i]=books.title;
+							context[i]=books.context;
+							question[i]=books.question;
+							answer[i]=books.answer;
+							ref[i]=books.reference;
+							
+							
+							var book_name = books.book_name;
+							var book_title = books.title;
+							var book_context = books.context;
+							var book_question = books.question;
+							var book_answer = books.answer;
+							var book_reference = books.reference;
+							
+							if(book_name == undefined && book_title == undefined && book_context == undefined && book_question == undefined && book_answer == undefined && book_reference == undefined)
+							{
+								book_name = "Content not uploaded";
+								book_title = "Content not uploaded";
+								book_context = "Content not uploaded";
+								book_question = "Content not uploaded";
+								book_answer = "Content not uploaded";
+								book_reference = "Content not uploaded";
+							}
+							
+							
+							var listValue=	"<li><div class='login-list-view'>" +
+											"<div><span style='font-size:18px; color: #96011a;'>Title : </span><br>"+book_title+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Context : </span><br>"+book_context+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Question : </span><br>"+book_question+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Answer : </span><br>" +book_answer+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Reference : </span><br><div style='font-size:14px;   '>"+book_reference+"</div></div>" +"<br>"+
+											"</div></li>";
+							$("#BookList").append(listValue);
+							$('#BookList').listview('refresh');                  
+   						} 
+							var listvalue1="<label>"+"<div>"+book_name+"</div>"+"</label>";
+							$("#labeldiv").append(listvalue1);
+					});
+				})
+			});
+		
+		function back()
+		{
+			window.history.back()
+		}
+	</script> 
+ 	<script>
+		$(window).load(function()
+		{
+			$('#dvLoading').fadeOut(2000);
+		});
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page"  id="get_case_law"  >
+	<div id="dvLoading"></div>
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    <a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+  	<div data-role="content" >
+    <div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+	<div style="width:60%; margin:auto; text-align:center; ">
+   		<label id="labeldiv" style="color:#333;"></label>
+   	</div>
+    <div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList"> </ul>
+	</div>
+ 	</div>
+<div class="clear" style="margin-top:25px;"></div>
+ 	
+	</div><!-- /page -->
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

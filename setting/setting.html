@@ -1,0 +1,158 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+ 	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png"/>
+    <style>
+		.styledRadio, .styledCheckbox 
+		{
+			display: inline-block;
+		}
+		.example 
+		{
+			padding: 50px 0 0 20px;
+		}
+		label 
+		{
+			line-height: 43px;
+			font-size: 20px;
+			vertical-align: 14px;
+			padding-right: 20px;
+		}
+		button
+		{
+			display: block;
+		}
+	</style>
+
+    <!-- scripts -->
+	<script src="../js/jquery-1.6.4.min.js"></script>
+	<script src="../js/jquery.mobile-1.1.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../js/jquery.screwdefaultbuttonsV2.js"></script>
+    <script type="text/javascript">
+ 	var value;
+ 		
+	function test() 
+	{
+		var radios = document.getElementsByName("lang");
+		var found = 1;
+		for (var i = 0; i < radios.length; i++) 
+		{       
+        	if (radios[i].checked) 
+			{
+				var a = radios[i].value;
+				window.localStorage.setItem("key",a);
+				value = window.localStorage.getItem("key");
+				
+				found = 0;
+				
+				
+				if(value=="Tamil")
+				{
+					alert("நீங்கள் தமிழ் மொழியை தேர்ந்தெடுத்துள்ளீர்கள்");
+					window.location.href="../lift-screen-6T.html";
+					
+					
+				}
+				else
+				{
+					alert("You have selected English as a default language" );
+					
+					window.location.href="../lift-screen-6.html";
+					
+				}
+           
+       		}
+    	}
+   			if(found == 1)
+    		{
+    			alert("Please Select Your Language");
+   			}  
+	}
+
+	$(function()
+	{
+		$('input:radio').screwDefaultButtons
+		({
+			image: 'url("../images/radioSmall.png")',
+			width: 35,
+			height: 35
+		});
+			
+		$('input:checkbox').screwDefaultButtons
+		({
+			image: 'url("images/checkboxSmall.jpg")',
+			width: 43,
+			height: 43
+		});
+
+			
+		
+	});
+ 
+	</script>
+ 	<script>
+
+		$(window).load(function()
+		{
+	 		 $('#dvLoading').fadeOut(2000);
+
+		});
+
+	</script>
+   
+   	<link rel="stylesheet" href="../assets/css/trainner.css">   
+   
+</head> 
+<body>
+ 
+	<div id="dvLoading"></div>
+	<div data-role="page" id="view_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+    <div class="logo">
+   <!-- <div class="hdarrow"><a href="../lift-screen-6.html"><img src="../images/headder-arrow.png" width=  				"47" height="33"></a></div>-->
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <div class="hdnut"><a href="../lift-screen-6.html" rel="external"><img src="../images/nut.png" width="31" height="32"></a></div>
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; font-family: 'Open Sans'; font-size:25px; ">App Setting</div>
+    <div class="login-list-view" style="margin-top:10px;" id="login-list">
+	  <ul data-role="listview"  id="BookList">    
+    		<li >Please Select your Language <br><br>
+     			<fieldset data-role="controlgroup" data-type="vertical" style="width:60%;">
+        		<input id="ex1_a"  name="lang" value="Tamil" type="radio"  style="width:35px; height:35px; margin-left:-18px;">
+       				<div style="padding-left:45px; margin-top:-25px; float:left;">  Tamil</div >
+       			 </input><br><br>
+				 <input   name="lang" value="English" type="radio" checked= "true" id="ex1_a" >               		 
+                 	<div style="padding-left:45px; margin-top:-25px; float:left;">   English</div >
+        		 </input>
+        		 </fieldset>
+   			 		<div  style="  color:#333; margin-left:5px;" class="nullbu"><input type="submit" data-inline="true" data-theme="b" value="Save" onClick="test();"  ></div>
+    		</li>
+	   </ul>
+    
+    </div>
+    </div>
+
+    <div style="margin-top:25px; clear:both;"></div>                    <!-- footer -->
+
+	</div><!-- /page -->
+	</div>
+
+	<!-- SCRIPTS -->
+
+	<!-- add to homepage bubble on iphone, ipad  -->
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="..\/assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="..\/assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+	<!-- /add to homepage bubble on iphone, ipad  --> 
+</body>
+</html>

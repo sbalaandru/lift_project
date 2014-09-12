@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script>
+		var bid,state;
+		var booktitle;
+		var text_null;
+		var lang =  window.localStorage.getItem("key");
+		
+			$("#get_year").live('pageinit', function(event, ui) 
+			{
+				$(document).ready(function()
+				{
+					function getUrlVars()
+					{
+						var  vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+						{
+							vars[key]=value;
+						});
+						return vars;
+					}
+				bid = getUrlVars()["id"];
+	   		 	state = getUrlVars()["state"];
+				var Book_name = new Array();
+				var Title = new Array();
+				var content = new Array();
+				var author= new Array();
+				$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/get_thoughts.php?book_id="+bid,function(data)
+				{                
+						var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+						var jsonData = JSON.parse(obj);
+						for (var i in jsonData.get_year)
+    					{
+							var books = jsonData.get_year[i];
+							Book_id =jsonData.get_year[i];
+						    Book_name[i]=books.book_name;
+							Title[i]=books.title;
+							content[i]=books.content;
+							author[i]=books.author;
+							
+							var book_name = books.book_name;
+							var book_title = books.title;
+							var book_content = books.content;
+							var book_author = books.author;
+							
+							
+							if(book_name == undefined && book_title == undefined && book_content == undefined && book_author == undefined)
+							{
+								book_name =  "தகவல் இல்லை";
+								book_title =  "தகவல் இல்லை";
+								book_content =  "தகவல் இல்லை";
+								book_author =  "தகவல் இல்லை";
+								
+							}
+							
+							
+							
+							
+							var listValue=	"<li><div class='login-list-view'>" +
+											"<div class='collor'>"+book_title+"</div>" +
+											"<div class='collor'>"+book_content+"</div>" +
+											"<div style=' float:right;'>"+book_author+"</div>" +"<br>"+
+										    "</div></li>";
+							$("#BookList").append(listValue);
+							$('#BookList').listview('refresh');                  
+					    } 
+							var listvalue1="<label>"+"<div>"+book_name+"</div>"+"</label>";
+							$("#labeldiv").append(listvalue1);
+				  });
+				})
+			});
+		
+		function back()
+		{
+			window.history.back()
+		}
+		</script> 
+ 		<script>
+			$(window).load(function()
+			{
+				  $('#dvLoading').fadeOut(2000);
+			});
+			</script>
+    		<!-- css -->
+   			<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="get_year"  >
+	<div id="dvLoading"></div>
+	<div data-role="header" data-position="fixed" class="page-header">
+    <div class="logo">
+    <a onclick="back();"><div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+   <!-- <div class="hdnut"><a href="lift-screen-6T.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id="login-list">
+    <div style="width:60%; margin:auto; text-align:center; ">
+   		<label id="labeldiv" style="color:#333;"></label>
+   	</div>
+	<div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList">    
+		</ul>
+	</div>
+ 	</div>
+    <div class="clear" style="margin-top:25px;"></div>
+    <!-- ul list con --><!-- ul list view --> 
+                   <!-- footer -->
+  
+	</div><!-- /page -->
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

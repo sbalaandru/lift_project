@@ -1,0 +1,91 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript">
+ 		function back()
+		{
+			window.history.back()
+		}
+  	</script> 
+    <script>
+		$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(2000);
+  		});
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="view_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    <a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; font-family: 'Open Sans'; font-size:25px;  ">
+About App
+   </div>
+	<div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList">
+		  <li style="text-align:
+            justify;">We believe that LIFT is the first of its kind in India.  LIFT provides a monthly digest of select statutes, both 
+
+
+
+central and state(presently Tamilnadu alone), case laws  of the Supreme Court of India and High Courts 
+
+
+
+(Presently Madras High Court alone), in English and other respective regional languages (Presently 
+
+
+
+Tamil Alone).  LIFT also presents Legal Forum which are motivating and useful  for all concerned.  LIFT  
+
+
+
+presents the case laws in  unique and narrative manner so as to bring out the exact issue on hand and 
+
+
+
+make it easy for the readers to understand and remember. Similarly all essential tenets of new statues 
+
+
+
+are provided in a systemic manner.  The contents of LIFT is from the Team of practicing lawyers with 
+
+
+
+standing of around 20 years  and more and  hence we believe that  we can understand the expectations 
+
+
+
+of the user and deliver a quality product. </li>
+            
+            <li style="">LIFT reserves all copyrights of the content,  unique formats and all the artistic works.  Any unauthorized reproduction/copying  is  strictly prohibited.  LIFT , Lawinfingertips, the logo are all the trademarks of M/s. LIFT India and nobody is entitled to copy or infringe upon the same. </li>
+		</ul>
+	</div>
+	</div>
+<div class="clear" style="margin-top:25px;"></div>
+    
+	</div>
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

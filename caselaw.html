@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+ 	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	<script>
+  		function getUrlVars()
+		{
+			var  vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+			{
+				vars[key]=value;
+			});
+			return vars;
+		}
+	 	bid = getUrlVars()["id"];
+	    function one()
+ 		{
+			window.location.href="caselawsupreme.html?id="+bid;
+ 		}
+  		function two()
+ 		{
+			window.location.href="caselawhigh.html?id="+bid;
+ 		}
+ 		function back()
+		{
+			window.history.back()
+		}
+
+ 	</script>
+
+	<script>
+
+		$(window).load(function()
+		{
+			$('#dvLoading').fadeOut(2000);
+
+		});
+
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+ 
+	<div id="dvLoading"></div>
+	<div data-role="page" id="month_of_book" >
+	<!-- slider -->
+    <!-- header -->
+	<div data-role="header" data-position="fixed" class="page-header">
+    <div class="logo">
+        <a onclick="back();"><div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+        <div  class="hdlogo" >Law In Finger Tips</div>
+        <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    
+	<!-- main content -->
+  	
+    <div data-role="content" >
+  	<div class="clear" style="margin-top:25px;"></div>
+    
+    <!-- 3 col -->
+	<a data-role="button" data-theme="b" onclick="one();"> 
+    <div class="social1" style="margin:10px 0px 0px; background-image:url(images/buttonbg1.jpg);"><span class="social1" style="margin-top:10px; font-family:Open Sans; color:#FFF;">			Supreme Court Of India</span>
+    </div>
+    </a>
+	<div class="clear" style="margin-top:25px;"></div>
+   	<a data-role="button" data-theme="a" onclick="two();">
+    <div class="social1" style="margin:10px 0px 0px; background-image:url(images/buttonbg2.jpg);"><span class="social1" style="margin-top:10px; font-family:Open Sans;  color:#FFF;">High Court</span>
+    </div>
+    </a>
+<div class="clear" style="margin-top:25px;"></div>                  <!-- footer -->
+  	
+	</div>
+	</div>
+	<!-- SCRIPTS -->
+
+	<!-- add to homepage bubble on iphone, ipad  -->
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

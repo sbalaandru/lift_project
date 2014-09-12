@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- scripts -->
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">  
+    
+	<script>
+		$("#categoryInfo").live('pageinit', function(event, ui)
+		{
+			loadCategory();	
+		})
+
+	</script>
+ 	<script type="text/javascript">
+		 var optionss,get_location,court_location,case_typename;
+		 var bid,state;
+		 var optionss;
+		 var lang =  window.localStorage.getItem("key");
+		
+			 		function loadCategory()
+			{
+				function getUrlVars()
+				{
+					var  vars = {};
+					var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+					{
+						vars[key]=value;
+					});
+					return vars;
+				}
+	 			bid = getUrlVars()["id"];
+	 			$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/get_legislation.php?book_id="+bid+"&type=list",function(data)
+				{
+					var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+    				var jsonData = JSON.parse(obj);
+					for (var i in jsonData.state_list) 
+    				{
+						var ssubcategory = jsonData.state_list[i];
+						var statename = ssubcategory.state;
+						if(statename == undefined)
+						{
+							statename = "மாநிலம் காணப்படவில்லை";
+						}
+						var listValue = '<option value="'+ssubcategory.state_id+'">'+statename+'</option>';	
+						$("#categorytype").append(listValue);
+					}
+				});
+			}
+		
+		function disp()
+		{
+			var category =  $("#categorytype option:selected").text();
+			if(category=="State")
+			{
+				alert("Plz Select State");
+			}
+			else
+			{
+				 window.location.href="legislationstatebookT.html?id="+bid+"&state="+optionss;
+			}
+		}
+		function show()
+		{
+			optionss = $('#categorytype').val();
+		}
+		function back()
+		{
+			window.history.back()
+		}
+
+	</script>
+	<script>
+		$(window).load(function()
+		{
+		  $('#dvLoading').fadeOut(500);
+
+		});
+	</script>
+</head> 
+<body>
+
+	<div id="dvLoading"></div>
+	<div data-role="page" id="categoryInfo" >
+    <!-- header -->
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+   	<a onclick="back();"><div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6T.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+    </div>
+    <!--/header --> 
+    <!-- main content -->
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px; margin-left: 10px; margin-right: 10px;">
+    <div id="main">
+    <div data-role="fieldcontain">
+		<label for="categorytype">உங்கள் மாநிலம்</label>
+        <select name="categorytype" id="categorytype" onchange="show();">
+        	<option value="">மாநில</option>
+        </select>
+	</div>
+	<div id="reed-boo" style=" border-radius:6px; width:115px; margin:20px auto;   background-image:url(../../images/buttonbg1.jpg);">
+        <a onClick="disp();" data-role="button"  data-theme="b" data-inline="true">படிக்க</a>
+	</div>
+	</div>
+<div class="clear" style="margin-top:25px;"></div>
+
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+	    }
+	</script>
+	<!-- /add to homepage bubble on iphone, ipad  --> 
+</body>
+</html>

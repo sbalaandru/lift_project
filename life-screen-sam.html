@@ -1,0 +1,168 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script>
+		var Book_id;
+ 		var dhanu;
+		var bid;
+				
+		$("#get_book_details").live('pageinit', function(event, ui) 
+		{
+			function getUrlVars(){
+			var  vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+			{
+				vars[key]=value;
+		
+			});
+			return vars;
+		}
+		
+		bid = getUrlVars()["id"];
+		
+			$(document).ready(function()
+			{
+				Book_id = new Array();
+				var Book_Title = new Array();
+				var Book_Image = new Array();
+				var date = new Array();
+				var book_month = new Array();
+				var temp_url;
+				$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/get_book_details.php?book_id="+bid,function(data)
+				{
+					var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+					var jsonData = JSON.parse(obj);
+    				for (var i in jsonData.get_book_details)
+    				{
+						var books = jsonData.get_book_details[i];
+						Book_id =jsonData.get_book_details[i];
+						Book_Title[i]=books.Book_Name;
+						temp_url=books.Url;
+						temp_url=temp_url.replace("\/","/");
+						Book_Image[i]=temp_url;
+						book_month[i]=books.month;
+						date[i]=books.Published_Month;
+						Book_id[i]=books.Id;
+						
+						
+						
+						document.getElementById("book-name").innerHTML = books.Book_Name;
+						                 
+	   				} 
+				dhanu = books.Id;
+    		  });
+		   })
+	   });
+		
+		  function one()
+ 		  {
+			  
+			 
+			  window.location.href="legislationcentralT.html?id="+bid;
+ 		  }
+  		  function two()
+ 		  {
+		 	  window.location.href="legislationstatebookT.html?id="+bid;
+ 		  }
+		  function three()
+ 		  {
+		 	  window.location.href="caselawsupremeT.html?id="+bid;
+ 		  }
+		   function four()
+ 		  {
+		 	  window.location.href="caselawbookT.html?id="+bid;
+ 		  }
+		   function five()
+ 		  {
+		 	  window.location.href="thoughtbookT.html?id="+bid;
+ 		  }
+		function back()
+		{
+			window.history.back()
+		}
+	</script> 
+	<script>
+		$(window).load(function()
+		{
+			$('#dvLoading').fadeOut(2000);
+		});
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="get_book_details" >
+	<div id="dvLoading"></div>
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    
+    
+    <!---------------------------->
+    <a onclick="back();"><div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+   <!-- <div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+   	<div data-role="content" >
+  	<div class="ui-grid-a" style="padding-bottom: 0px;">
+	<div class="ui-block-a head-sub">
+    <div class="grid-box">
+   		
+        
+       
+	</div> 
+    </div>
+	<div class="ui-block-b" id="seccol" style="margin-left:0px;" >
+	<span class="tri-fon list-1" style="font-size:18px; font-family: 'Open Sans';" id="name"></span>
+	<span class="tri-fon list-1 " style="font-size:24px; font-family: 'Open Sans'; line-height: 2; letter-spacing: 1px;"><span class="head-title1">லிஃப்ட் - </span> <span id="book-name"></span> </span><br>
+	<span class="tri-fon list-1" style="font-size:16px; font-family: 'Open Sans'; letter-spacing: 1px;"> </span>
+    </div>
+   	</div>
+ 	<div class="clear" style="margin-top:0px;"></div>
+    <a data-role="button" data-theme="b" onclick="one();"> 
+    <div class="social1 color-1" style="margin:10px 10px 0px; background:#f99c35;">
+    <div>
+    </div>
+    <div>
+  	<!--<span id=""></span>-->
+    <!--<img class="legi-img" src="images/logo-head-2.png">-->
+    
+    <span class="social1 txt-central11" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">மத்திய  சட்டம்</span></div>
+    </div>
+    </a>
+    <a data-role="button" data-theme="b" onclick="two();"> 
+    <div class="social1" style="margin:1px 10px 0px; background:#f99c35;"><!--<img class="tam-legi" src="images/logo-head-2.png">--><span class="social1 txt-central11" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">தமிழ்நாடு மாநில சட்டம்  </span>
+    </div>
+    </a>
+    <a data-role="button" data-theme="b" onclick="three();"> 
+    <div class="social1" style="margin:1px 10px 0px; background:#497e13;"><!--<img class="supreme-law" src="images/logo-head-2.png">--><span class="social1 txt-central11" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">உச்ச நீதிமன்ற தீர்ப்புகள்</span>
+    </div>
+    </a>
+    <a data-role="button" data-theme="b" onclick="four();"> 
+    <div class="social1" style="margin:1px 10px 0px; background:#497e13;"><!--<img class="madras-but" src="images/logo-head-2.png">--><span class="social1 txt-central11" style="margin-top:10px; font-family:Open Sans;color:#FFF; ">சென்னை  உயர் நீதிமன்ற தீர்ப்புகள் </span>
+    </div> 
+    </a>
+	<a data-role="button" data-theme="a" onclick="five();">
+    <div class="social1" style="margin:1px 10px 0px; background:#0f76b8;"><!--<img class="forum-txt" src="images/logo-head-2.png">--><span class="social1 txt-central11" style="margin-top:10px; font-family:Open Sans;  color:#FFF; ">கருத்து மேடை</span>
+    </div>
+    </a>
+    
+    
+    <div class="clear" style="margin-top:25px;"></div>
+    
+	</div>
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

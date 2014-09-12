@@ -2376,7 +2376,8 @@ font-size: 24px;}
 .search-menu{ color:#0f76b8 !important; font-size:24px;}
 .lib-menu{ color:#3c5720 !important; font-size:24px;}
 .sub-menu{ font-size:20px; color:#000 !important; font-weight:300 !important;}
-.txt-central-T{ font-size:24px;}
+/*.txt-central-T{ font-size:24px;}*/
+.txt-central-T{ font-size:75%;}
 .sub-txt{ font-family: open sans-serif;}
 .img-mnu{ float:left; margin-right:10px;}
 .txt-mnu{ margin-top:5px;}
@@ -2881,7 +2882,8 @@ html.mm-opening .mm-fixed-bottom {
 	.header-title{ font-size:16px;}
 	.txt-central{ font-size:20px;}
 	.txt-central11{ font-size:18px;}
-	.txt-central-T{ font-size:14px;}
+	/*.txt-central-T{ font-size:14px;}*/
+	.txt-central-T{ font-size:75%;}
 	.txt-central-T11{ font-size:12px;}
 	.language-change{ padding-left:10px; margin-right:-20px;}
 	.head-sub{ margin-left:27% !important;}
@@ -2889,7 +2891,8 @@ html.mm-opening .mm-fixed-bottom {
 }
 @media all and (min-width: 480px) {
 	.txt-central11{ font-size:14px !important;}
-	.txt-central-T{ font-size:20px;}
+	.txt-central-T{ font-size:75%;}
+	/*.txt-central-T{ font-size:20px;}*/
 	.head-sub{ margin-left:35% !important;}
 	.txt-central11{ font-size:20px !important;}
 }
@@ -2898,7 +2901,8 @@ html.mm-opening .mm-fixed-bottom {
 	.head-sub{ margin-left:45% !important;}
   .mm-menu {
     width: 440px; }
-.txt-central-T{ font-size:24px;}
+/*.txt-central-T{ font-size:24px;}*/
+.txt-central-T{ font-size:75%;}
   html.mm-opening .mm-page,
   html.mm-opening #mm-blocker,
   html.mm-opening .mm-fixed-top,

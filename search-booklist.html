@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery1.min.js"></script>
+    <script type="text/javascript" src="slider_css/jquery.mmenu.css"></script>
+    <script type="text/javascript" src="slider_js/jquery.mmenu.min.js"></script>
+    <!--<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>-->
+    <script type="text/javascript">
+ 		function back()
+		{
+			window.history.back()
+		}
+  	</script> 
+    <script>
+		$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(2000);
+  		});
+		$(document).ready(function(e) {
+			
+			function getUrlVars()
+					{
+						var  vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+						{
+							vars[key]=value;
+		
+						});
+						return vars;
+					}
+	 				word = getUrlVars()["word"];
+					lawtype = getUrlVars()["lawtype"];
+					//alert(word + lawtype);
+					
+					/*******/
+			
+			if(lawtype == 'legislation')
+			{
+				$.post("http://54.255.134.169/streetsmart/v1/search","word="+word+"&lawtype="+lawtype,
+				function(data, textStatus, jqXHR)
+				{
+					//alert('hi');
+					$.each(data, function(i, item)
+					{
+						var liftbookname = item.name;
+						var liftactno = item.act_no;
+						var liftenacted = item.enacted_by;
+						var liftforce = item.came_in_force;
+						var liftfeatures = item.salient_features;
+						var liftname = item.book_name;
+						var liftreceiver= item.receiver_by_president_on;
+						var liftpublish = item.published_in;
+						var liftbrief = item.brief_deatils;
+						var reference = item.ref_url;
+						$('#bookList').append('<li style="padding:2px 1px 8px;"><div style="padding-bottom:10px; text-align: center;font-weight: 700;">'+liftname+'</div><div style="padding:10px 0;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Name :<br></span>'+liftbookname+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Act No :<br></span>'+liftactno+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Enacted by :<br></span>'+liftenacted+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Receiver by president on :<br></span>'+liftreceiver+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Published in :<br></span>'+liftpublish+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Came in force :<br></span>'+liftforce+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Salient features :<br></span>'+liftfeatures+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Brief Deatils :<br></span>'+liftbrief+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Reference  :<br></span>'+reference+'</div></li>');
+					});
+						
+				   
+				
+				},"json").fail(function(jqXHR, textStatus, errorThrown) 
+					{
+						alert('Something Went Wrong!');
+					});
+				
+			}else if(lawtype == 'caselaw')
+			{
+				$.post("http://54.255.134.169/streetsmart/v1/search","word="+word+"&lawtype="+lawtype,
+				function(data, textStatus, jqXHR)
+				{
+					//alert('hi');
+					$.each(data, function(i, item)
+					{
+						var booktitle = item.title;
+						var bookcontext = item.context;
+						var bookquestion = item.question;
+						var bookanswer = item.answer;
+						var bookname = item.name;
+						var bookrefer = item.reference;
+						$('#bookList').append('<li style="padding:2px 1px 8px;"><div style="padding-bottom:10px; text-align: center;font-weight: 700;">'+bookname+'</div><div style="padding:10px 0;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Title :<br></span>'+booktitle+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Context :<br></span>'+bookcontext+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Question :<br></span>'+bookquestion+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Answer :<br></span>'+bookanswer+'</div><div style="padding-bottom:10px;"><span style="color: #96011a; font-weight: 600; font-size: 16px;">Reference :<br></span>'+bookrefer+'</div></li>');
+					});
+						
+				   
+				
+				},"json").fail(function(jqXHR, textStatus, errorThrown) 
+					{
+						alert('Something Went Wrong!');
+					});
+			}else
+			{
+				alert('Something Went Wrong!')
+			}
+            
+			
+			
+        });
+		
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="view_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    <a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; font-family: 'Open Sans'; font-size:25px;  ">
+Search Result
+   </div>
+	<div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="bookList" style="list-style: none; padding: 0 1px; text-align:justify;">
+		  
+  
+		</ul>
+	</div>
+	</div>
+<div class="clear" style="margin-top:25px;"></div>
+    
+	</div>
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

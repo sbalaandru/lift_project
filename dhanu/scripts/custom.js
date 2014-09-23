@@ -12,7 +12,7 @@ $(document).ready(function() {
     // On Search Submit and Get Results
     function search() {
         var query_value = $('input#search').val();
-        var stype =$('input:radio[name=stype]:checked').val();        
+        var stype = $('input:radio[name=stype]:checked').val();        
         //alert(stype);
         var n = 0,datas;
         $('b#search-string').html(query_value);
@@ -29,11 +29,7 @@ $(document).ready(function() {
                     if (n >= 1) {
                         for (var i = 0; i <= n; i++) {
                             datas="id="+obj.search[i].id+'&name='+obj.search[i].name+'&img='+obj.search[i].url+'&month='+obj.search[i].month+'&date='+obj.search[i].published_month;
-                            //datas="id="+obj.search[i].id+'&name='+obj.search[i].name+'&img='+obj.search[i].url+'&date='+obj.search[i].month;
-//                            $("ul#results").append('<li onclick="test(this)" id="' + datas + '" > <img src="' + obj.search[i].url + '" title="' + obj.search[i].name + '" />\n\
-//                            ' + obj.search[i].name + '  </li>');
-                           // $("ul#results").append('<li> <img src="' + obj.search[i].url + '" title="' + obj.search[i].name + '" />\n\
-                             // </li>');
+                            
 							   $("ul#results").append('<li onclick="test(this)"id="' + datas + '" > <img src="' + obj.search[i].url+'" width="50" height="70" style=" border:2px solid #cecece; " />\n\
                             '  +'<div style=" margin-bottom:30px; float:right; padding-top:25; font-size:13px; font-family:Open Sans;">' +'<br>'+'<br>' +obj.search[i].name +  '</div>' +'  </li>');
 							    }

@@ -18,9 +18,10 @@
     <script>
 		$(window).load(function()
 		{
-			  $('#dvLoading').fadeOut(2000);
+			  //$('#dvLoading').fadeOut(2000);
   		});
 		$(document).ready(function(e) {
+			$('#dvLoading').fadeIn(2000);
 			
 			function getUrlVars()
 					{
@@ -43,7 +44,7 @@
 				$.post("http://54.255.134.169/streetsmart/v1/search","word="+word+"&lawtype="+lawtype,
 				function(data, textStatus, jqXHR)
 				{
-					//alert('hi');
+					$('#dvLoading').fadeOut(2000);
 					$.each(data, function(i, item)
 					{
 						var liftbookname = item.name;
@@ -71,7 +72,7 @@
 				$.post("http://54.255.134.169/streetsmart/v1/search","word="+word+"&lawtype="+lawtype,
 				function(data, textStatus, jqXHR)
 				{
-					//alert('hi');
+					$('#dvLoading').fadeOut(2000);
 					$.each(data, function(i, item)
 					{
 						var booktitle = item.title;
@@ -102,7 +103,8 @@
     <!-- css -->
    	<link rel="stylesheet" href="assets/css/trainner.css">   
 </head> 
-<body>
+<body style="background:none;">
+<div id="dvLoading"></div>
 	<div data-role="page" id="view_book" >
 	<div data-role="header" data-position="fixed" class="page-header">
    	<div class="logo">
